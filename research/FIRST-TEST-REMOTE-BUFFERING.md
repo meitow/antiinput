@@ -83,6 +83,16 @@ If possible, use the same:
 - stack size
 - warmup routine
 
+To keep the route change clean without resetting the whole PC:
+
+1. finish Route A block
+2. close the game
+3. switch ExitLag node
+4. reconnect or re-apply the route
+5. run the baseline collector for Route B
+6. launch the game again
+7. play the same block
+
 ## 5) Test block
 
 For each route:
@@ -91,6 +101,12 @@ For each route:
 2. Play a fixed block.
 3. Save replay IDs or clip timestamps.
 4. Fill one row in `duel-feel-session-log.csv`.
+
+The baseline collector writes files to:
+
+- `research\test-baselines\<timestamp>-<label>\`
+
+Each route should get its own label and its own folder.
 
 ### Suggested fixed block
 

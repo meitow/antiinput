@@ -116,7 +116,7 @@ function Measure-PingSeries {
     )
 
     $ping = [System.Net.NetworkInformation.Ping]::new()
-    $samples = New-Object System.Collections.Generic.List[object]
+    $samples = New-Object "System.Collections.Generic.List[psobject]"
 
     try {
         for ($sampleNumber = 1; $sampleNumber -le $Count; $sampleNumber++) {
@@ -138,7 +138,7 @@ function Measure-PingSeries {
                 $status = $_.Exception.Message
             }
 
-            $samples.Add([pscustomobject]@{
+            [void]$samples.Add([pscustomobject]@{
                 Sample     = $sampleNumber
                 Timestamp  = $timestamp.ToString("o")
                 Status     = $status
@@ -154,21 +154,24 @@ function Measure-PingSeries {
         $ping.Dispose()
     }
 
-    return @($samples)
+    return $samples.ToArray()
 }
 
 function Get-PingSummary {
     param([object[]]$Samples)
 
-    $successValues = @()
-    foreach ($sample in $Samples) {
-        if ($null -ne $sample.RttMs) {
-            $successValues += [double]$sample.RttMs
+    $normalizedSamples = @($Samples)
+    $successValues = New-Object "System.Collections.Generic.List[double]"
+    foreach ($sample in $normalizedSamples) {
+        $rttProperty = $sample.PSObject.Properties["RttMs"]
+        if ($null -ne $rttProperty -and $null -ne $rttProperty.Value) {
+            [void]$successValues.Add([double]$rttProperty.Value)
         }
     }
 
-    $sent = $Samples.Count
-    $success = $successValues.Count
+    $successArray = $successValues.ToArray()
+    $sent = $normalizedSamples.Count
+    $success = $successArray.Count
     $lossPct = if ($sent -gt 0) {
         [math]::Round((($sent - $success) / $sent) * 100, 2)
     }
@@ -191,18 +194,19 @@ function Get-PingSummary {
         }
     }
 
-    $sortedValues = @($successValues | Sort-Object)
-    $meanRtt = [math]::Round(($successValues | Measure-Object -Average).Average, 2)
+    $sortedValues = @($successArray | Sort-Object)
+    $meanRtt = [math]::Round(($successArray | Measure-Object -Average).Average, 2)
     $minRtt = [math]::Round(($sortedValues | Measure-Object -Minimum).Minimum, 2)
     $maxRtt = [math]::Round(($sortedValues | Measure-Object -Maximum).Maximum, 2)
 
-    $deltas = @()
-    for ($index = 1; $index -lt $successValues.Count; $index++) {
-        $deltas += [math]::Abs($successValues[$index] - $successValues[$index - 1])
+    $deltas = New-Object "System.Collections.Generic.List[double]"
+    for ($index = 1; $index -lt $successArray.Count; $index++) {
+        [void]$deltas.Add([math]::Abs($successArray[$index] - $successArray[$index - 1]))
     }
 
-    $meanAbsDelta = if ($deltas.Count -gt 0) {
-        [math]::Round(($deltas | Measure-Object -Average).Average, 2)
+    $deltaArray = $deltas.ToArray()
+    $meanAbsDelta = if ($deltaArray.Count -gt 0) {
+        [math]::Round(($deltaArray | Measure-Object -Average).Average, 2)
     }
     else {
         0.0
@@ -217,7 +221,7 @@ function Get-PingSummary {
         P95RttMs             = Get-Percentile -Values $sortedValues -Percentile 95
         P99RttMs             = Get-Percentile -Values $sortedValues -Percentile 99
         MaxRttMs             = $maxRtt
-        JitterStdDevMs       = Get-StandardDeviation -Values $successValues
+        JitterStdDevMs       = Get-StandardDeviation -Values $successArray
         JitterMeanAbsDeltaMs = $meanAbsDelta
     }
 }
@@ -368,3 +372,4 @@ Write-Host "Output: $runRoot" -ForegroundColor Green
 if ($Target.Count -gt 0) {
     Write-Host "Measured targets: $($Target -join ', ')" -ForegroundColor Green
 }
+Write-Host "Files created under: $runRoot" -ForegroundColor Green
