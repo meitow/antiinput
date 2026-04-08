@@ -10,6 +10,8 @@ Research workspace for building and testing anti-input-lag hypotheses for compet
 
 ## Key files
 
+- `research/DEVELOPER-CRUTCHES-STUDY.md`
+- `research/FIRST-TEST-REMOTE-BUFFERING.md`
 - `research/OBJECTIVE-TEST-BASE.md`
 - `research/collect-objective-baseline.ps1`
 - `research/duel-feel-session-log.csv`

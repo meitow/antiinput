@@ -2,6 +2,21 @@
 Дата: 2026-04-08
 
 Что лежит в папке:
+- DEVELOPER-CRUTCHES-STUDY.md
+  Разбор того, какие developer-side компенсации и "костыли" реально используют Riot/Valve:
+  - incoming movement buffering
+  - interpolation / animation lag
+  - client prediction и correction
+  - server rewind / lag compensation
+  - Fog of War / relevance gating
+  - relay routing и почему route quality важнее среднего ping
+
+- FIRST-TEST-REMOTE-BUFFERING.md
+  Первый узкий тест:
+  - сравнение route/node при фиксированном клиентском preset
+  - проверка, меняется ли читаемость модельки и импакт сильнее, чем это объясняет average ping
+  - фокус на MVC / BIC / PR, а не на общей "эмоции от катки"
+
 - OBJECTIVE-TEST-BASE.md
   Базовый протокол исследования:
   - как отделять маршрут от локального клиента
