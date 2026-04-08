@@ -1,0 +1,237 @@
+Rollback instructions for suspicious low-latency / gaming tweaks
+Date: 2026-04-08
+
+Files in this folder:
+- gaming-network-tweaks-research.md
+- rollback-suspicious-gaming-tweaks.ps1
+- ROLLBACK-INSTRUCTIONS.txt
+
+======================================================================
+1) SAFEST OPTION: run the PowerShell rollback script
+======================================================================
+
+What the script does:
+- removes suspicious BCD timer overrides:
+  - useplatformclock
+  - useplatformtick
+  - disabledynamictick
+  - tscsyncpolicy
+- removes per-interface TCP registry tweaks:
+  - TcpAckFrequency
+  - TcpNoDelay / TCPNoDelay
+  - TcpDelAckTicks
+- sets TCP autotuning back to normal
+- re-enables:
+  - global RSS
+  - global RSC
+  - global Task Offload
+  - adapter RSS
+  - adapter RSC
+  - adapter checksum offload
+- optionally resets all NIC advanced properties back to factory defaults
+- saves before/after snapshots and a transcript log
+
+What the script does NOT do:
+- it does not change BIOS settings
+- it does not edit router settings
+- it does not change ExitLag routes/profiles
+- it does not touch GPU control panel settings
+- it does not guess your "best" esports configuration
+
+How to run it:
+
+1. Open PowerShell as Administrator.
+2. Go to the research folder:
+
+   cd "C:\path\to\repo\research"
+
+3. If script execution is blocked for this session only:
+
+   Set-ExecutionPolicy -Scope Process Bypass
+
+4. Dry run first:
+
+   .\rollback-suspicious-gaming-tweaks.ps1 -WhatIf
+
+5. Run the actual rollback:
+
+   .\rollback-suspicious-gaming-tweaks.ps1
+
+6. Reboot the PC.
+
+Logs will be saved into:
+- research\rollback-logs\<timestamp>\
+
+Optional flags:
+
+- Reset advanced NIC properties to factory defaults too:
+
+  .\rollback-suspicious-gaming-tweaks.ps1 -FactoryResetAdvancedNicProperties
+
+  Warning:
+  This is broader and can remove intentional adapter tuning, not only
+  gaming tweaks.
+
+- Try to re-enable the "High Precision Event Timer" device in Device Manager:
+
+  .\rollback-suspicious-gaming-tweaks.ps1 -TryEnableHpetDevice
+
+  Note:
+  This is optional on purpose. HPET is not a universal gaming win.
+  The script leaves it off unless you explicitly ask for this step.
+
+======================================================================
+2) MANUAL ROLLBACK WITHOUT THE SCRIPT
+======================================================================
+
+Open Command Prompt or PowerShell as Administrator.
+
+----------------------------------------------------------------------
+A. Remove suspicious BCD timer overrides
+----------------------------------------------------------------------
+
+Run:
+
+  bcdedit /deletevalue useplatformclock
+  bcdedit /deletevalue useplatformtick
+  bcdedit /deletevalue disabledynamictick
+  bcdedit /deletevalue tscsyncpolicy
+
+If a value was never set, Windows may say "Element not found".
+That is fine.
+
+Reboot is required after BCD changes.
+
+----------------------------------------------------------------------
+B. Remove TCP ACK / Nagle registry tweaks
+----------------------------------------------------------------------
+
+Open Registry Editor and check:
+
+  HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\{YOUR-INTERFACE-GUID}
+
+Delete these values if they exist:
+
+  TcpAckFrequency
+  TcpNoDelay
+  TCPNoDelay
+  TcpDelAckTicks
+
+Repeat for all interface GUIDs where those values were added.
+
+----------------------------------------------------------------------
+C. Set TCP autotuning back to normal
+----------------------------------------------------------------------
+
+Run:
+
+  netsh int tcp set global autotuninglevel=normal
+
+Check:
+
+  netsh int tcp show global
+
+----------------------------------------------------------------------
+D. Re-enable offloads and scaling features
+----------------------------------------------------------------------
+
+In PowerShell as Administrator:
+
+  Set-NetOffloadGlobalSetting -ReceiveSideScaling Enabled -ReceiveSegmentCoalescing Enabled -TaskOffload Enabled
+  Enable-NetAdapterRss -Name "*"
+  Enable-NetAdapterRsc -Name "*"
+  Enable-NetAdapterChecksumOffload -Name "*"
+
+If you want to target a specific adapter instead of all adapters:
+
+  Enable-NetAdapterRss -Name "Ethernet"
+  Enable-NetAdapterRsc -Name "Ethernet"
+  Enable-NetAdapterChecksumOffload -Name "Ethernet"
+
+Important note:
+Re-enabling RSS turns the feature back on, but if you manually changed
+adapter-specific RSS placement/profile values earlier, Windows does not
+offer one simple universal "reset RSS to exact vendor default" cmdlet.
+If you want the cleanest adapter reset, use the optional advanced-property
+factory reset shown in section E.
+
+----------------------------------------------------------------------
+E. Optional: factory-reset NIC advanced properties
+----------------------------------------------------------------------
+
+If you changed many NIC advanced options and no longer trust the state:
+
+  Reset-NetAdapterAdvancedProperty -Name "Ethernet" -DisplayName "*"
+
+Warning:
+This is broad. It resets all advanced properties for that NIC.
+
+======================================================================
+3) WHAT TO CHECK AFTER REBOOT
+======================================================================
+
+Check these first:
+
+1. BCD state:
+
+   bcdedit /enum
+
+2. TCP globals:
+
+   netsh int tcp show global
+
+3. Global offloads:
+
+   Get-NetOffloadGlobalSetting
+
+4. Adapter RSS:
+
+   Get-NetAdapterRss -Name "*"
+
+5. Adapter checksum offload:
+
+   Get-NetAdapterChecksumOffload -Name "*"
+
+6. NIC advanced properties:
+
+   Get-NetAdapterAdvancedProperty -Name "*" -IncludeHidden
+
+======================================================================
+4) HOW TO TEST AFTER ROLLBACK
+======================================================================
+
+Do not change ten more things at once.
+
+Recommended order:
+
+1. Reboot.
+2. Play one game/session with no further tweaks.
+3. Check:
+   - frame time stability
+   - in-game packet loss / jitter graph
+   - whether peeks feel more consistent
+   - whether deaths behind cover feel less extreme
+4. Only then test one change at a time:
+   - Interrupt Moderation level
+   - EEE / Green Ethernet
+   - RSS affinity
+   - G-SYNC / V-SYNC / Reflex combination
+
+======================================================================
+5) IMPORTANT INTERPRETATION NOTES
+======================================================================
+
+- TCP tweaks are usually not the main answer for UDP-style shooter gameplay.
+- A lower average ping does not guarantee better "fight feel" if jitter is high.
+- Peeker's advantage is caused by a stack:
+  - network latency
+  - latency difference between players
+  - lag compensation
+  - interpolation / smoothing
+  - local frame time
+  - display latency
+- Sub-tick helps action timing precision, but it does not remove routing delay,
+  jitter, or visual desync.
+
+If you want the full explanation, read:
+- gaming-network-tweaks-research.md
