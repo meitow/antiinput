@@ -2,6 +2,48 @@
 Дата: 2026-04-08
 
 Что лежит в папке:
+- DEVELOPER-CRUTCHES-STUDY.md
+  Разбор того, какие developer-side компенсации и "костыли" реально используют Riot/Valve:
+  - incoming movement buffering
+  - interpolation / animation lag
+  - client prediction и correction
+  - server rewind / lag compensation
+  - Fog of War / relevance gating
+  - relay routing и почему route quality важнее среднего ping
+
+- FIRST-TEST-REMOTE-BUFFERING.md
+  Первый узкий тест:
+  - сравнение route/node при фиксированном клиентском preset
+  - проверка, меняется ли читаемость модельки и импакт сильнее, чем это объясняет average ping
+  - фокус на MVC / BIC / PR, а не на общей "эмоции от катки"
+
+- OBJECTIVE-TEST-BASE.md
+  Базовый протокол исследования:
+  - как отделять маршрут от локального клиента
+  - как вести логи сессий без плацебо
+  - какие метрики считать основными
+
+- NETCODE-COMPENSATION-MAP.md
+  Карта "костылей" и компенсаций со стороны разработчиков:
+  - interpolation / buffering
+  - client prediction
+  - server rewind / lag compensation
+  - Fog of War / relevance gating
+  - почему эти механики могут и спасать игру, и искажать ощущение дуэли
+
+- collect-objective-baseline.ps1
+  Read-only PowerShell-скрипт:
+  - снимает baseline системы и сети без изменения настроек
+  - сохраняет snapshots по адаптерам / offload / RSS / TCP
+  - может измерять серии ping до выбранных targets с p95 / p99 / jitter
+
+- duel-feel-session-log.csv
+  Минимальная таблица для логирования тестовых блоков:
+  - маршрут
+  - клиентский preset
+  - FPS / sync
+  - оценки читаемости и импакта
+
 - gaming-network-tweaks-research.md
   Большой техотчет с ресерчем с нуля:
   - официальные источники Microsoft / Intel / NVIDIA / Valve / IETF

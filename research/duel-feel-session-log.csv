@@ -1,0 +1,1 @@
+session_id,date_local,game,mode,map_or_scenario,location,provider,server_region,match_or_replay_id,route_label,route_target,route_tool,route_ping_mean_ms,route_ping_p95_ms,route_ping_p99_ms,route_jitter_stddev_ms,route_jitter_mad_ms,route_loss_pct,client_preset,sync_stack,fps_cap,avg_fps,low_1_pct_fps,low_0_1_pct_fps,mvc_0_3,bic_0_3,pr_0_3,mcr_0_3,notes,decision
