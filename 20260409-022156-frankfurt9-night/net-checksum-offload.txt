@@ -1,0 +1,26 @@
+﻿
+
+IpIPv4Enabled                       : Disabled
+TcpIPv4Enabled                      : Disabled
+TcpIPv6Enabled                      : Disabled
+UdpIPv4Enabled                      : Disabled
+UdpIPv6Enabled                      : Disabled
+ifAlias                             : Ethernet
+InterfaceAlias                      : Ethernet
+ifDesc                              : Realtek PCIe GbE Family Controller
+Caption                             : MSFT_NetAdapterChecksumOffloadSettingData 'Realtek PCIe GbE Family Controller'
+Description                         : Realtek PCIe GbE Family Controller
+ElementName                         : Realtek PCIe GbE Family Controller
+InstanceID                          : {E1C0D4D2-D47D-44AF-9802-59D0F7275F1D}
+InterfaceDescription                : Realtek PCIe GbE Family Controller
+Name                                : Ethernet
+Source                              : 2
+SystemName                          : DESKTOP-NR9VHNF
+ChecksumOffloadHardwareCapabilities : MSFT_NetAdapterChecksumOffloadCapabilities
+PSComputerName                      : 
+CimClass                            : ROOT/StandardCimv2:MSFT_NetAdapterChecksumOffloadSettingData
+CimInstanceProperties               : {Caption, Description, ElementName, InstanceID...}
+CimSystemProperties                 : Microsoft.Management.Infrastructure.CimSystemProperties
+
+
+

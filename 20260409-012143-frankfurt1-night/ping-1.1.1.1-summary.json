@@ -1,0 +1,12 @@
+﻿{
+    "Sent":  120,
+    "Success":  120,
+    "LossPct":  0,
+    "MinRttMs":  2,
+    "MeanRttMs":  2.02,
+    "P95RttMs":  2,
+    "P99RttMs":  3,
+    "MaxRttMs":  3,
+    "JitterStdDevMs":  0.13,
+    "JitterMeanAbsDeltaMs":  0.03
+}

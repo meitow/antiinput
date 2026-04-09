@@ -1,0 +1,45 @@
+﻿{
+    "Label":  "frankfurt9-night",
+    "CollectedAt":  "2026-04-09T02:23:39.3254183+03:00",
+    "OutputPath":  "C:\\antiinput-main\\antiinput-cursor-custom-tweak-lab-9926\\research\\test-baselines\\20260409-022156-frankfurt9-night",
+    "PingCount":  120,
+    "PauseMs":  250,
+    "MachineName":  "DESKTOP-NR9VHNF",
+    "OSCaption":  "Microsoft Windows 11 IoT Enterprise LTSC",
+    "OSVersion":  "10.0.26100",
+    "OSBuild":  "26100",
+    "ComputerModel":  "G5 KF",
+    "ActivePowerPlan":  "Power Scheme GUID: 827d6dc0-0312-40ab-8479-9ba442398701  (Ultimate Performance (ExitLag))",
+    "Targets":  [
+                    {
+                        "Target":  "1.1.1.1",
+                        "Summary":  {
+                                        "Sent":  120,
+                                        "Success":  120,
+                                        "LossPct":  0,
+                                        "MinRttMs":  2,
+                                        "MeanRttMs":  2.35,
+                                        "P95RttMs":  4,
+                                        "P99RttMs":  12,
+                                        "MaxRttMs":  13,
+                                        "JitterStdDevMs":  1.45,
+                                        "JitterMeanAbsDeltaMs":  0.55
+                                    }
+                    },
+                    {
+                        "Target":  "8.8.8.8",
+                        "Summary":  {
+                                        "Sent":  120,
+                                        "Success":  120,
+                                        "LossPct":  0,
+                                        "MinRttMs":  21,
+                                        "MeanRttMs":  21.96,
+                                        "P95RttMs":  28,
+                                        "P99RttMs":  34,
+                                        "MaxRttMs":  37,
+                                        "JitterStdDevMs":  2.63,
+                                        "JitterMeanAbsDeltaMs":  1.57
+                                    }
+                    }
+                ]
+}
