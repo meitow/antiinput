@@ -1,0 +1,365 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260409045025
+Username: DESKTOP-NR9VHNF\ll
+RunAs User: DESKTOP-NR9VHNF\ll
+Configuration Name: 
+Machine: DESKTOP-NR9VHNF (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 15592
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+==> Saving pre-rollback snapshots
+==> Rolling back BCD timer overrides
+==> Deleting BCD value 'useplatformclock'
+An error occurred while attempting to delete the specified data element.
+Element not found.
+==> Deleting BCD value 'useplatformtick'
+An error occurred while attempting to delete the specified data element.
+Element not found.
+==> Deleting BCD value 'disabledynamictick'
+The operation completed successfully.
+==> Deleting BCD value 'tscsyncpolicy'
+An error occurred while attempting to delete the specified data element.
+Element not found.
+==> Removing per-interface TCP registry tweaks
+==> Removing TcpAckFrequency from interface {e1c0d4d2-d47d-44af-9802-59d0f7275f1d}
+==> Removing TcpNoDelay from interface {e1c0d4d2-d47d-44af-9802-59d0f7275f1d}
+==> Setting TCP autotuning level to normal
+Ok.
+==> Enabling global RSS / RSC / Task Offload
+==> Enabling RSS on adapter '6to4 Adapter'
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to '6to4 Adapter'.  
+Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (6to4 Adapter:String) [Enable-NetAdapterRss], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to '6to4 Adapter'.
+Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (6to4 Adapter:String) [Enable-NetAdapterRss], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+
+==> Enabling RSC on adapter '6to4 Adapter'
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to '6to4 Adapter'.  
+Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (6to4 Adapter:String) [Enable-NetAdapterRsc], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to '6to4 Adapter'.
+Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (6to4 Adapter:String) [Enable-NetAdapterRsc], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+
+==> Enabling checksum offload on adapter '6to4 Adapter'
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name' 
+equal to '6to4 Adapter'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (6to4 Adapter:String) [Enable-NetAdapterChecksumOffload], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name'
+equal to '6to4 Adapter'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (6to4 Adapter:String) [Enable-NetAdapterChecksumOffload], CimJobExceptio
+   n
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+
+==> Enabling RSS on adapter 'Ethernet'
+==> Enabling RSC on adapter 'Ethernet'
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to 'Ethernet'.  Verify 
+the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Ethernet:String) [Enable-NetAdapterRsc], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to 'Ethernet'.
+Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Ethernet:String) [Enable-NetAdapterRsc], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+
+==> Enabling checksum offload on adapter 'Ethernet'
+==> Enabling RSS on adapter 'Ethernet (Kernel Debugger)'
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to 'Ethernet (Kernel 
+Debugger)'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Ethernet (Kernel Debugger):String) [Enable-NetAdapterRss], 
+CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to 'Ethernet (Kernel
+Debugger)'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Ethernet (Kernel Debugger):String) [Enable-NetAdapterRss], CimJobExcept
+   ion
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+
+==> Enabling RSC on adapter 'Ethernet (Kernel Debugger)'
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to 'Ethernet (Kernel 
+Debugger)'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Ethernet (Kernel Debugger):String) [Enable-NetAdapterRsc], 
+CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to 'Ethernet (Kernel
+Debugger)'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Ethernet (Kernel Debugger):String) [Enable-NetAdapterRsc], CimJobExcept
+   ion
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+
+==> Enabling checksum offload on adapter 'Ethernet (Kernel Debugger)'
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name' 
+equal to 'Ethernet (Kernel Debugger)'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Ethernet (Kernel Debugger):String) [Enable-NetAdapterChecksumOffload], 
+CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name'
+equal to 'Ethernet (Kernel Debugger)'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Ethernet (Kernel Debugger):String) [Enable-NetAdapterChecksumOffload],
+   CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+
+==> Enabling RSS on adapter 'Local Area Connection* 1'
+==> Enabling RSC on adapter 'Local Area Connection* 1'
+==> Enabling checksum offload on adapter 'Local Area Connection* 1'
+==> Enabling RSS on adapter 'Local Area Connection* 2'
+==> Enabling RSC on adapter 'Local Area Connection* 2'
+==> Enabling checksum offload on adapter 'Local Area Connection* 2'
+==> Enabling RSS on adapter 'Microsoft IP-HTTPS Platform Interface'
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to 'Microsoft IP-HTTPS 
+Platform Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Microsoft IP-HTTPS Platform Interface:String) [Enable-NetAdapterRss], 
+CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to 'Microsoft
+IP-HTTPS Platform Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Microsoft IP-HTTPS Platform Interface:String) [Enable-NetAdapterRss], C
+   imJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+
+==> Enabling RSC on adapter 'Microsoft IP-HTTPS Platform Interface'
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to 'Microsoft IP-HTTPS 
+Platform Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Microsoft IP-HTTPS Platform Interface:String) [Enable-NetAdapterRsc], 
+CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to 'Microsoft
+IP-HTTPS Platform Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Microsoft IP-HTTPS Platform Interface:String) [Enable-NetAdapterRsc], C
+   imJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+
+==> Enabling checksum offload on adapter 'Microsoft IP-HTTPS Platform Interface'
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name' 
+equal to 'Microsoft IP-HTTPS Platform Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Microsoft IP-HTTPS Platform Interface:String) 
+[Enable-NetAdapterChecksumOffload], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name'
+equal to 'Microsoft IP-HTTPS Platform Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Microsoft IP-HTTPS Platform Interface:String) [Enable-NetAdapterChecksu
+   mOffload], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+
+==> Enabling RSS on adapter 'Radmin VPN'
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to 'Radmin VPN'.  
+Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Radmin VPN:String) [Enable-NetAdapterRss], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to 'Radmin VPN'.
+Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Radmin VPN:String) [Enable-NetAdapterRss], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+
+==> Enabling RSC on adapter 'Radmin VPN'
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to 'Radmin VPN'.  
+Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Radmin VPN:String) [Enable-NetAdapterRsc], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to 'Radmin VPN'.
+Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Radmin VPN:String) [Enable-NetAdapterRsc], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+
+==> Enabling checksum offload on adapter 'Radmin VPN'
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name' 
+equal to 'Radmin VPN'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Radmin VPN:String) [Enable-NetAdapterChecksumOffload], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name'
+equal to 'Radmin VPN'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Radmin VPN:String) [Enable-NetAdapterChecksumOffload], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+
+==> Enabling RSS on adapter 'Teredo Tunneling Pseudo-Interface'
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to 'Teredo Tunneling 
+Pseudo-Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Teredo Tunneling Pseudo-Interface:String) [Enable-NetAdapterRss], 
+CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to 'Teredo Tunneling
+Pseudo-Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Teredo Tunneling Pseudo-Interface:String) [Enable-NetAdapterRss], CimJo
+   bException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+
+==> Enabling RSC on adapter 'Teredo Tunneling Pseudo-Interface'
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to 'Teredo Tunneling 
+Pseudo-Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Teredo Tunneling Pseudo-Interface:String) [Enable-NetAdapterRsc], 
+CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+Enable-NetAdapterRsc : No MSFT_NetAdapterRscSettingData objects found with property 'Name' equal to 'Teredo Tunneling
+Pseudo-Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:144 char:21
++                     Enable-NetAdapterRsc -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Teredo Tunneling Pseudo-Interface:String) [Enable-NetAdapterRsc], CimJo
+   bException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRsc
+
+==> Enabling checksum offload on adapter 'Teredo Tunneling Pseudo-Interface'
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name' 
+equal to 'Teredo Tunneling Pseudo-Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Teredo Tunneling Pseudo-Interface:String) 
+[Enable-NetAdapterChecksumOffload], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name'
+equal to 'Teredo Tunneling Pseudo-Interface'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Teredo Tunneling Pseudo-Interface:String) [Enable-NetAdapterChecksumOff
+   load], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+
+==> Enabling RSS on adapter 'Wi-Fi'
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to 'Wi-Fi'.  Verify 
+the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Wi-Fi:String) [Enable-NetAdapterRss], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+Enable-NetAdapterRss : No MSFT_NetAdapterRssSettingData objects found with property 'Name' equal to 'Wi-Fi'.  Verify
+the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:132 char:21
++                     Enable-NetAdapterRss -Name $name -Confirm:$false
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Wi-Fi:String) [Enable-NetAdapterRss], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterRss
+
+==> Enabling RSC on adapter 'Wi-Fi'
+==> Enabling checksum offload on adapter 'Wi-Fi'
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name' 
+equal to 'Wi-Fi'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Wi-Fi:String) [Enable-NetAdapterChecksumOffload], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+Enable-NetAdapterChecksumOffload : No MSFT_NetAdapterChecksumOffloadSettingData objects found with property 'Name'
+equal to 'Wi-Fi'.  Verify the value of the property and retry.
+At C:\z1\research\rollback-suspicious-gaming-tweaks.ps1:156 char:21
++ ...             Enable-NetAdapterChecksumOffload -Name $name -Confirm:$fa ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Wi-Fi:String) [Enable-NetAdapterChecksumOffload], CimJobException
+    + FullyQualifiedErrorId : CmdletizationQuery_NotFound_Name,Enable-NetAdapterChecksumOffload
+
+==> Saving post-rollback snapshots
+
+Rollback complete.
+Logs and before/after snapshots: C:\z1\research\rollback-logs\20260409-045025
+A reboot is recommended now.
+
+This script does NOT change BIOS settings, router settings, ExitLag profiles, or other third-party tool configs.
+If your NIC was heavily modified through vendor-specific advanced properties, consider re-running with -FactoryResetAdvancedNicProperties.
+**********************
+Windows PowerShell transcript end
+End time: 20260409045029
+**********************

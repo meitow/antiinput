@@ -1,0 +1,14 @@
+﻿
+Name                                  InterfaceDescription                      Status       LinkSpeed
+----                                  --------------------                      ------       ---------
+6to4 Adapter                                                                    Not Present  0 bps    
+Ethernet                              Realtek PCIe GbE Family Controller        Disconnected 0 bps    
+Ethernet (Kernel Debugger)            Microsoft Kernel Debug Network Adapter    Not Present  0 bps    
+Local Area Connection* 1              Microsoft Wi-Fi Direct Virtual Adapter    Disconnected 0 bps    
+Local Area Connection* 2              Microsoft Wi-Fi Direct Virtual Adapter #2 Disconnected 0 bps    
+Microsoft IP-HTTPS Platform Interface                                           Not Present  0 bps    
+Radmin VPN                            Famatech Radmin VPN Ethernet Adapter      Up           100 Mbps 
+Teredo Tunneling Pseudo-Interface                                               Disabled     100 Kbps 
+Wi-Fi                                 Intel(R) Wi-Fi 6E AX211 160MHz            Disconnected 0 bps    
+
+

@@ -1,0 +1,58 @@
+﻿
+
+Profile                       : NUMAStatic
+ifAlias                       : Ethernet
+InterfaceAlias                : Ethernet
+ifDesc                        : Realtek PCIe GbE Family Controller
+Caption                       : MSFT_NetAdapterRssSettingData 'Realtek PCIe GbE Family Controller'
+Description                   : Realtek PCIe GbE Family Controller
+ElementName                   : Realtek PCIe GbE Family Controller
+InstanceID                    : {E1C0D4D2-D47D-44AF-9802-59D0F7275F1D}
+InterfaceDescription          : Realtek PCIe GbE Family Controller
+Name                          : Ethernet
+Source                        : 2
+SystemName                    : DESKTOP-NR9VHNF
+BaseProcessorGroup            : 0
+BaseProcessorNumber           : 6
+ClassificationAtDpcSupported  : False
+ClassificationAtIsrSupported  : True
+Enabled                       : True
+HashKeySize                   : 
+IndirectionTable              : 
+IndirectionTableEntryCount    : 
+IPv4HashEnabled               : 
+IPv6ExtensionHashEnabled      : 
+IPv6HashEnabled               : 
+MaxProcessorGroup             : 0
+MaxProcessorNumber            : 7
+MaxProcessors                 : 1
+MsiSupported                  : True
+MsiXEnabled                   : False
+MsiXSupported                 : True
+NumaNode                      : 0
+NumberOfInterruptMessages     : 1
+NumberOfReceiveQueues         : 2
+RssOnPortsSupported           : False
+RssProcessorArray             : {MSFT_NetAdapter_RssProcessor}
+RssProcessorArraySize         : 1
+TcpIPv4HashEnabled            : 
+TcpIPv4HashSupported          : True
+TcpIPv6ExtensionHashEnabled   : 
+TcpIPv6ExtensionHashSupported : False
+TcpIPv6HashEnabled            : 
+TcpIPv6HashSupported          : True
+ToeplitzHashFunctionEnabled   : 
+ToeplitzHashFunctionSupported : True
+UdpIPv4HashEnabled            : 
+UdpIPv4HashSupported          : False
+UdpIPv6ExtensionHashEnabled   : 
+UdpIPv6ExtensionHashSupported : False
+UdpIPv6HashEnabled            : 
+UdpIPv6HashSupported          : False
+PSComputerName                : 
+CimClass                      : ROOT/StandardCimv2:MSFT_NetAdapterRssSettingData
+CimInstanceProperties         : {Caption, Description, ElementName, InstanceID...}
+CimSystemProperties           : Microsoft.Management.Infrastructure.CimSystemProperties
+
+
+
