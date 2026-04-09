@@ -50,8 +50,25 @@ function Invoke-External {
     }
 }
 
+function Test-BcdValuePresent {
+    param([string]$Name)
+
+    $bcdOutput = & bcdedit.exe /enum "{current}" 2>$null
+    if ($LASTEXITCODE -ne 0 -or -not $bcdOutput) {
+        Write-WarnStep "Could not inspect BCD current entry before checking '$Name'."
+        return $false
+    }
+
+    return [bool]($bcdOutput | Select-String -Pattern ("^\s*{0}\s+" -f [regex]::Escape($Name)))
+}
+
 function Try-DeleteBcdValue {
     param([string]$Name)
+
+    if (-not (Test-BcdValuePresent -Name $Name)) {
+        Write-Step "BCD value '$Name' is already absent"
+        return
+    }
 
     if (-not $PSCmdlet.ShouldProcess("BCD current entry", "Delete value '$Name'")) {
         return
@@ -93,13 +110,58 @@ function Remove-TcpRegistryTweaks {
 }
 
 function Get-TargetAdapters {
-    $adapters = Get-NetAdapter -Name $AdapterName -IncludeHidden -ErrorAction SilentlyContinue | Sort-Object -Property Name -Unique
+    $allAdapters = @(Get-NetAdapter -IncludeHidden -ErrorAction SilentlyContinue)
+    $resolvedAdapters = @()
+
+    foreach ($adapterPattern in $AdapterName) {
+        $matches = @($allAdapters | Where-Object {
+            $_.Name -like $adapterPattern -or $_.InterfaceDescription -like $adapterPattern
+        })
+        $resolvedAdapters += $matches
+    }
+
+    $adapters = @($resolvedAdapters | Sort-Object -Property Name -Unique)
     if (-not $adapters) {
         Write-WarnStep "No adapters matched: $($AdapterName -join ', ')"
         return @()
     }
 
-    return @($adapters)
+    if ($AdapterName.Count -eq 1 -and $AdapterName[0] -eq "*") {
+        $physicalAdapters = @($adapters | Where-Object { $_.HardwareInterface -and $_.Status -ne "Not Present" })
+        if ($physicalAdapters) {
+            return $physicalAdapters
+        }
+    }
+
+    return @($adapters | Where-Object { $_.Status -ne "Not Present" })
+}
+
+function Test-AdapterFeatureSupport {
+    param(
+        [string]$Feature,
+        [string]$AdapterName
+    )
+
+    try {
+        switch ($Feature) {
+            "RSS" {
+                return [bool]@(Get-NetAdapterRss -Name $AdapterName -ErrorAction SilentlyContinue)
+            }
+            "RSC" {
+                return [bool]@(Get-NetAdapterRsc -Name $AdapterName -ErrorAction SilentlyContinue)
+            }
+            "ChecksumOffload" {
+                return [bool]@(Get-NetAdapterChecksumOffload -Name $AdapterName -ErrorAction SilentlyContinue)
+            }
+            default {
+                throw "Unknown feature '$Feature'"
+            }
+        }
+    }
+    catch {
+        Write-WarnStep "Could not determine whether '$AdapterName' supports $Feature: $($_.Exception.Message)"
+        return $false
+    }
 }
 
 function Enable-GlobalOffloads {
@@ -126,7 +188,10 @@ function Restore-AdapterDefaults {
         $name = $adapter.Name
 
         if (Get-Command Enable-NetAdapterRss -ErrorAction SilentlyContinue) {
-            if ($PSCmdlet.ShouldProcess($name, "Enable RSS")) {
+            if (-not (Test-AdapterFeatureSupport -Feature "RSS" -AdapterName $name)) {
+                Write-Step "Skipping RSS on adapter '$name' (unsupported or unavailable)"
+            }
+            elseif ($PSCmdlet.ShouldProcess($name, "Enable RSS")) {
                 try {
                     Write-Step "Enabling RSS on adapter '$name'"
                     Enable-NetAdapterRss -Name $name -Confirm:$false
@@ -138,7 +203,10 @@ function Restore-AdapterDefaults {
         }
 
         if (Get-Command Enable-NetAdapterRsc -ErrorAction SilentlyContinue) {
-            if ($PSCmdlet.ShouldProcess($name, "Enable RSC")) {
+            if (-not (Test-AdapterFeatureSupport -Feature "RSC" -AdapterName $name)) {
+                Write-Step "Skipping RSC on adapter '$name' (unsupported or unavailable)"
+            }
+            elseif ($PSCmdlet.ShouldProcess($name, "Enable RSC")) {
                 try {
                     Write-Step "Enabling RSC on adapter '$name'"
                     Enable-NetAdapterRsc -Name $name -Confirm:$false
@@ -150,7 +218,10 @@ function Restore-AdapterDefaults {
         }
 
         if (Get-Command Enable-NetAdapterChecksumOffload -ErrorAction SilentlyContinue) {
-            if ($PSCmdlet.ShouldProcess($name, "Enable checksum offload")) {
+            if (-not (Test-AdapterFeatureSupport -Feature "ChecksumOffload" -AdapterName $name)) {
+                Write-Step "Skipping checksum offload on adapter '$name' (unsupported or unavailable)"
+            }
+            elseif ($PSCmdlet.ShouldProcess($name, "Enable checksum offload")) {
                 try {
                     Write-Step "Enabling checksum offload on adapter '$name'"
                     Enable-NetAdapterChecksumOffload -Name $name -Confirm:$false
