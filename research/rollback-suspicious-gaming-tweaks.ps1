@@ -110,7 +110,17 @@ function Remove-TcpRegistryTweaks {
 }
 
 function Get-TargetAdapters {
-    $adapters = Get-NetAdapter -Name $AdapterName -IncludeHidden -ErrorAction SilentlyContinue | Sort-Object -Property Name -Unique
+    $allAdapters = @(Get-NetAdapter -IncludeHidden -ErrorAction SilentlyContinue)
+    $resolvedAdapters = @()
+
+    foreach ($adapterPattern in $AdapterName) {
+        $matches = @($allAdapters | Where-Object {
+            $_.Name -like $adapterPattern -or $_.InterfaceDescription -like $adapterPattern
+        })
+        $resolvedAdapters += $matches
+    }
+
+    $adapters = @($resolvedAdapters | Sort-Object -Property Name -Unique)
     if (-not $adapters) {
         Write-WarnStep "No adapters matched: $($AdapterName -join ', ')"
         return @()

@@ -53,6 +53,16 @@ How to run it:
 
    .\rollback-suspicious-gaming-tweaks.ps1 -WhatIf
 
+   Optional:
+   If you want to target a specific physical NIC, you can pass either the
+   adapter name or the interface description. Example:
+
+   .\rollback-suspicious-gaming-tweaks.ps1 -AdapterName "Ethernet"
+
+   or:
+
+   .\rollback-suspicious-gaming-tweaks.ps1 -AdapterName "*Realtek PCIe GbE Family Controller*"
+
 5. Run the actual rollback:
 
    .\rollback-suspicious-gaming-tweaks.ps1
@@ -99,6 +109,9 @@ Run:
 
 If a value was never set, Windows may say "Element not found".
 That is fine.
+
+The rollback script now treats an already-missing BCD value as a normal
+"already absent" state, not as a failure.
 
 Reboot is required after BCD changes.
 
@@ -147,6 +160,15 @@ If you want to target a specific adapter instead of all adapters:
   Enable-NetAdapterRss -Name "Ethernet"
   Enable-NetAdapterRsc -Name "Ethernet"
   Enable-NetAdapterChecksumOffload -Name "Ethernet"
+
+If your adapter is easier to identify by description, you can also target
+the physical NIC by its interface description, for example:
+
+  Get-NetAdapter | Format-Table Name, InterfaceDescription, Status
+
+Then choose the adapter that corresponds to your active wired NIC, such as:
+
+  "Realtek PCIe GbE Family Controller"
 
 Important note:
 Re-enabling RSS turns the feature back on, but if you manually changed
@@ -223,6 +245,9 @@ Recommended order:
 
 - TCP tweaks are usually not the main answer for UDP-style shooter gameplay.
 - A lower average ping does not guarantee better "fight feel" if jitter is high.
+- Errors against not-present, virtual, VPN, or unsupported adapters are often
+  just noise from broad wildcard targeting, not proof that the rollback failed
+  on the active physical NIC.
 - Peeker's advantage is caused by a stack:
   - network latency
   - latency difference between players
